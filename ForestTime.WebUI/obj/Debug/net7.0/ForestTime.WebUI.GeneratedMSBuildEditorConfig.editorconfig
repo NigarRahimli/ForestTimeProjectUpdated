@@ -92,12 +92,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQXV0aFxBdXRoLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Desktop/ForesTime-Project/ForestTime.WebUI/Views/Shared/Components/Category/Category.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ2F0ZWdvcnlcQ2F0ZWdvcnkuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/User/Desktop/ForesTime-Project/ForestTime.WebUI/Views/Shared/Components/DashboardAuth/DashboardAuth.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcRGFzaGJvYXJkQXV0aFxEYXNoYm9hcmRBdXRoLmNzaHRtbA==
+[C:/Users/User/Desktop/ForesTime-Project/ForestTime.WebUI/Views/Shared/Components/Category/CategoriesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ2F0ZWdvcnlcQ2F0ZWdvcmllc0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/Desktop/ForesTime-Project/ForestTime.WebUI/Views/Shared/Error.cshtml]

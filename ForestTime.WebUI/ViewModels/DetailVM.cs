@@ -11,6 +11,5 @@ namespace ForestTime.WebUI.ViewModels
         public Article PrevArticle { get; set;} 
         public Article NextArticle { get; set;} 
 
-
     }
 }

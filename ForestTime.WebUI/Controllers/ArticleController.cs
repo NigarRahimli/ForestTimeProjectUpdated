@@ -105,7 +105,17 @@ namespace ForestTime.WebUI.Controllers
                 return NotFound();
             }
         }
+        public IActionResult Category(int categoryId)
+        {
+            var getByCategory = _context.Articles.Include(x => x.Category).Where(x => x.Category.Id == categoryId).ToList();
+            var vm = new CategoryVM()
+            {
+                GetByCategory=getByCategory
 
+            };
+
+            return View(vm);
+        }
     }
 
 }
