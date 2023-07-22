@@ -1,0 +1,7 @@
+﻿@model List<Category>
+@foreach (var category in Model)
+{
+    <li class="nav-item">
+        <a class="nav-link color-green-hover" href="/Category/Index/@category.Id">@category.CategoryName</a>
+    </li>
+}
