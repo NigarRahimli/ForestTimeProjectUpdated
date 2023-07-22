@@ -16,7 +16,7 @@ namespace ForestTime.WebUI.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var categories=_context.Categories.Take(5).ToList();
-            return View("Category", categories);
+            return View(categories);
         }
     }
 }
