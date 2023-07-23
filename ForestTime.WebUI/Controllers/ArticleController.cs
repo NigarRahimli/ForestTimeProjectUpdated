@@ -46,8 +46,7 @@ namespace ForestTime.WebUI.Controllers
             try
             {
             var article=_context.Articles.Include(x=>x.User).Include(x=>x.Category).Include(x=>x.ArticleTags).ThenInclude(x=>x.Tag).FirstOrDefault(x=>x.Id == id);
-                var topArticles = _context.Articles.OrderByDescending(x=>x.Views).Take(3).ToList();
-                var recentArticles=_context.Articles.OrderByDescending(x=>x.Id).Take(3).ToList();
+
                 var currentArticle = _context.Articles.Include(x => x.Category).FirstOrDefault(x => x.Id == id);
 
                 var prevArticle = _context.Articles
@@ -87,8 +86,6 @@ namespace ForestTime.WebUI.Controllers
                 DetailVM vm = new()
                 {
                     Article = article,
-                    TopArticles = topArticles,
-                    RecentAddedArticles= recentArticles,
                     Comments = comments,
                     PrevArticle=prevArticle,
                     NextArticle=nextArticle

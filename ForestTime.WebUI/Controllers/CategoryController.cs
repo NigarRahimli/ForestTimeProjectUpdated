@@ -29,7 +29,7 @@ namespace ForestTime.WebUI.Controllers
             }
 
            
-            var articles = _context.Articles.Include(x=>x.Category)
+            var articles = _context.Articles.Include(x=>x.Category).Include(x=>x.User)
                 .Where(a => a.CategoryId == category.Id)
                 .ToList();
 

@@ -134,7 +134,7 @@
             </div><!-- end container -->
         </header><!-- end header -->
          @RenderBody()
-
+        @(await Component.InvokeAsync("Side"))
         <footer class="footer">
             <div class="container">
                 <div class="row">
