@@ -14,19 +14,21 @@ namespace ForestTime.WebUI.ViewComponents
         {
             _context = context;
         }
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int id)
         {
             var topArticles = _context.Articles.OrderByDescending(x => x.Views).Take(3).ToList();
             var recentArticles = _context.Articles.OrderByDescending(x => x.Id).Take(3).ToList();
-
             // Retrieve categories and their article counts
             var categoriesWithCounts = _context.Articles.Include(x=>x.Category)
                 .GroupBy(a => a.Category.CategoryName)
                 .Select(g => new CategoryWithCountDTO
                 {
+                    Id = g.FirstOrDefault().Category.Id,
                     CategoryName = g.Key,
-                    CategoryCount = g.Count()
-                })
+                    CategoryCount = g.Count(),
+                }
+             
+                )
                 .ToList();
 
             SideVM sideArticle = new SideVM
@@ -34,7 +36,8 @@ namespace ForestTime.WebUI.ViewComponents
                 
                 CategoriesWithCounts = categoriesWithCounts,
                 TopArticles = topArticles,
-                RecentAddedArticles = recentArticles
+                RecentAddedArticles = recentArticles,
+                
             };
 
             return View("Side", sideArticle);

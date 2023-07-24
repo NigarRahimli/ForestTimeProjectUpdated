@@ -1,0 +1,15 @@
+﻿@model User
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <img src="@Model.PhotoUrl" width="400" height="400"/>
+            <hr/>
+            <input type="file" name="Photo"/>
+        </div>
+        <div class="col-lg-8">
+<input type="text" value="@Model.FirstName"/>
+        </div>
+    </div>
+</div>

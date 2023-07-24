@@ -1,0 +1,63 @@
+﻿@model List<User>
+@inject Microsoft.AspNetCore.Identity.UserManager<User> userManager;
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a href="/dashboard/user/create">Add Role</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+
+                        <th>Email</th>
+                        <th>User Name</th>
+                        <th>Settings</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Email</th>
+                        <th>User Name</th>
+                        <th>Settings</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.Email</td>
+                            <td>
+                                @{
+                                    var roles = await userManager.GetRolesAsync(user);
+                                    foreach (var role in roles)
+                                    {
+                                        <span>@role</span>
+                                    }
+
+                                }
+
+                            </td>
+                            <td>
+                                <a class="btn btn-success" href="/dashboard/user/addrole/@user.Id">Add Role</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/admin/js/demo/datatables-demo.js"></script>
+
+ }

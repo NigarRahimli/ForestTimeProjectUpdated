@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ForestTime.WebUI.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator")]
     public class TagController : Controller
     {
         private readonly AppDbContext _context;
@@ -21,11 +21,14 @@ namespace ForestTime.WebUI.Areas.Dashboard.Controllers
             var tags=_context.Tags.ToList();
             return View(tags);
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(Tag tag) {
             try
             {

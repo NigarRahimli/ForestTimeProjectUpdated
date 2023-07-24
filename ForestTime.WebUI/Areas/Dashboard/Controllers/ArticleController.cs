@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ForestTime.Helpers;
 using ForestTime.WebUI.Data;
 using ForestTime.WebUI.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 namespace TechBlog.WebUI.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
-    [Authorize]
+    [Authorize(Roles ="Admin,Moderator")]
     public class ArticleController : Controller
     {
         private readonly AppDbContext _context;
@@ -50,7 +51,7 @@ namespace TechBlog.WebUI.Areas.Dashboard.Controllers
             try
             {
                 article.UserId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                article.SeoUrl = "dasdjaskd";
+                article.SeoUrl = SeoHelper.SeoUrlCreater(article.Title);
                 article.CreatedDate = DateTime.Now;
                 article.UpdatedDate = DateTime.Now;
                 article.CategoryId = categoryId;
@@ -68,7 +69,7 @@ namespace TechBlog.WebUI.Areas.Dashboard.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return View(article);
 
@@ -109,7 +110,7 @@ namespace TechBlog.WebUI.Areas.Dashboard.Controllers
                 exArticle.Content = article.Content;
                 exArticle.PhotoUrl = article.PhotoUrl;
                 exArticle.UserId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                exArticle.SeoUrl = "swd";
+                article.SeoUrl = SeoHelper.SeoUrlCreater(article.Title);
                 exArticle.UpdatedDate = DateTime.Now;
                 exArticle.CategoryId = categoryId;
 
@@ -137,6 +138,14 @@ namespace TechBlog.WebUI.Areas.Dashboard.Controllers
                 return View(article);
             }
         }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var delete = _context.Articles.FirstOrDefault(x => x.Id ==id);
 
+            _context.Articles.Remove(delete);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -40,34 +40,50 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <!-- Nav Item - Tag -->
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/tag">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Tag</span>
-                </a>
-            </li>
-            <!-- Nav Item - Category -->
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/category">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Category</span>
-                </a>
-            </li>
-            <!-- Nav Item - Article -->
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/article">
+            @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+            {
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <!-- Nav Item - Tag -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/tag">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Tag</span>
+                    </a>
+                </li>
+                <!-- Nav Item - Category -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/category">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Category</span>
+                    </a>
+                </li>
+                <!-- Nav Item - Article -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/article">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Article</span>
                 </a>
-            </li>
+            </li>}
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/role">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Role</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/user">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Users</span>
+                </a>
+            </li>}
             <!-- Divider -->
             <hr class="sidebar-divider">
 

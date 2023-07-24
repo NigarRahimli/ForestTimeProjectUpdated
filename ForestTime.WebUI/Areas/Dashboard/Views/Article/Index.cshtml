@@ -51,7 +51,12 @@
                             <td>
                                 <a class="btn btn-success" href="/dashboard/article/edit/@article.Id">Edit</a><br /><br />
                                 <a class="btn btn-primary" href="/dashboard/article/detail/@article.Id">Detail</a><br /><br />
-                                <a class="btn btn-danger" href="/dashboard/article/delete/@article.Id">Delete</a>
+
+                                <form method="post" asp-action="Delete" asp-controller="Article">
+                                    <input type="hidden"  name="id"  value="@article.Id"/>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>    
+                             
                             </td>
                         </tr>}
    

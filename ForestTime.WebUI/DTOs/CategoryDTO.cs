@@ -1,4 +1,5 @@
-﻿using ForestTime.WebUI.Models;
+﻿
+using ForestTime.WebUI.Models;
 
 namespace ForestTime.WebUI.DTOs
 {

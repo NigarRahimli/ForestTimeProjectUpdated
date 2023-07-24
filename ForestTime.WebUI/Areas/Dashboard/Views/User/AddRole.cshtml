@@ -1,0 +1,7 @@
+﻿@model User
+<form method="post">
+    <input name="userId" type="hidden" value="@Model.Id" />
+    <select name="Name" asp-items="@ViewBag.Roles">
+    </select>
+    <input type="submit" value="Add Role" />
+</form>

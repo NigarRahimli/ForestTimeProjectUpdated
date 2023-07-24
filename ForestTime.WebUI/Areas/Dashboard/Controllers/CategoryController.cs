@@ -1,11 +1,14 @@
 ﻿using ForestTime.WebUI.Data;
 using ForestTime.WebUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace ForestTime.WebUI.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
+    [Authorize(Roles = "Admin,Moderator")]
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;

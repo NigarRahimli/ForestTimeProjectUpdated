@@ -26,17 +26,19 @@ namespace ForestTime.WebUI.Controllers
             _context = context;
            
         }
-
+        
         public IActionResult Index()
         {
             var articles=_context.Articles.Include(x=>x.User).ToList();
             var tags=_context.Tags.ToList();
             var categories=_context.Categories.ToList();
+            var bestArticles = _context.Articles.Include(x=>x.Category).OrderByDescending(x => x.Views).Take(3).ToList();
             HomeVM vm = new()
             {
                 HomeArticles = articles,
                 HomeTags = tags,
-                HomeCategories=categories
+                HomeCategories=categories,
+               BestArticles = bestArticles
             };
             return View(vm);
         } 

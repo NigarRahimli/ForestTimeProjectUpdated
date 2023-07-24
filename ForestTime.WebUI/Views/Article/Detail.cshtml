@@ -129,7 +129,7 @@
                                     </div><!-- end media -->
                                     <div class="blog-meta">
                                         <h4><a href="/article/detail/@Model.PrevArticle.Id" title="">@Model.PrevArticle.Title</a></h4>
-                                        <small><a href="blog-category-01.html" title="">@Model.PrevArticle.Category.CategoryName</a></small>
+                                        <small><a href=" /Category/Index/@Model.PrevArticle.CategoryId" title="">@Model.PrevArticle.Category.CategoryName</a></small>
                                         @{
                                             CultureInfo engCulture = new CultureInfo("en-US");
                                             string createDate = Model.PrevArticle.CreatedDate.ToString("dd MMMM, yyyy", englishCulture);
@@ -151,7 +151,7 @@
                                     </div><!-- end media -->
                                     <div class="blog-meta">
                                         <h4><a href="/article/detail/@Model.PrevArticle.Id" title="">@Model.NextArticle.Title</a></h4>
-                                        <small><a href="blog-category-01.html" title="">@Model.NextArticle.Category.CategoryName</a></small>
+                                        <small><a href="/Category/Index/@Model.NextArticle.CategoryId" title="">@Model.NextArticle.Category.CategoryName</a></small>
                                         @{
                                             CultureInfo enCulture = new CultureInfo("en-US");
                                             string creatDate = Model.NextArticle.CreatedDate.ToString("dd MMMM, yyyy", englishCulture);

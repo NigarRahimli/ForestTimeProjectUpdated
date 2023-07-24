@@ -54,36 +54,57 @@ namespace ForestTime.WebUI.Controllers
         //bu register htmlde post metodunu ise salir
         [HttpPost]
         //async bir birini gozleyen method yaratmaq ucun
+        [HttpPost]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
-            User user = new()
+            try
             {
-                FirstName = registerDTO.FirstName,
-
-                LastName = registerDTO.LastName,
-                PhotoUrl = "/image/avatar.png",
-                //bu hisse identityden gelir doldurmaq mecburiyyetindeyik
-                UserName = registerDTO.Email,
-                Email = registerDTO.Email
-            };
-
-            IdentityResult result = await _userManager.CreateAsync(user, registerDTO.Password);
-            if (result.Succeeded)
-            {
-                await _signInManager.PasswordSignInAsync(user, registerDTO.Password, false, false);//login  
-
-                string cont = _httpContext.HttpContext.Request.Query["controller"].ToString();
-                string act = _httpContext.HttpContext.Request.Query["action"].ToString();
-                string id = _httpContext.HttpContext.Request.Query["id"].ToString();
-                if (!String.IsNullOrWhiteSpace(cont))
+                User user = new()
                 {
-                    return RedirectToAction(act, cont, new { Id = id });
-                }
+                    FirstName = registerDTO.FirstName,
+                    LastName = registerDTO.LastName,
+                    PhotoUrl = "/image/avatar.png",
+                    UserName = registerDTO.Email,
+                    Email = registerDTO.Email
+                };
 
-                return RedirectToAction("Index", "Home");
+                IdentityResult result = await _userManager.CreateAsync(user, registerDTO.Password);
+                await _userManager.AddToRoleAsync(user, "User");
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    string cont = _httpContext.HttpContext.Request.Query["controller"].ToString();
+                    string act = _httpContext.HttpContext.Request.Query["action"].ToString();
+                    string id = _httpContext.HttpContext.Request.Query["id"].ToString();
+                    if (!String.IsNullOrWhiteSpace(cont))
+                    {
+                        return RedirectToAction(act, cont, new { Id = id });
+                    }
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return View(registerDTO);
+                }
             }
-            return View(
-                );
+            catch (Exception )
+            {
+                return View(registerDTO);
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+           await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
+
+ 
+   
 }
+
